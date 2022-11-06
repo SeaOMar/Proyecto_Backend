@@ -1,0 +1,98 @@
+import requests
+
+class Pokemon:
+
+    def __init__(self, name, habilidad, url_imagen):
+        self.name = name
+        self.habilidad: list[any] = habilidad
+        self.url_imagen = url_imagen
+
+    def mostrar_datos(self):
+        print(f"Pokemon: {self.name}",
+              f"\nHabilidades: {self.habilidad}",
+              f"\nUrl_Imagen: {self.url_imagen}"
+              )
+
+def gen(msg):
+    while True:
+        valor = input(f"{msg}")
+        try:
+            valor = int(valor)
+            return valor
+        except ValueError:
+            print("Debe ingresar un número")
+
+
+def opcion1():
+    generacion = gen("Ingrese una generación (1-8):")
+    while (int(generacion) == 0) or (int(generacion) > 8):
+        print("¡Ha escrito una generación fuera del rango")
+        generacion = lee_entero("Ingrese una generación (1-8):")
+    api_generacion = "https://pokeapi.co/api/v2/generation/" + str(generacion) + "/"
+    response = requests.get(api_generacion)
+    data = response.json()
+    print(f"Lista de Pokemones")
+
+    for pokemon in data['pokemon_species']:
+        response_pokemon = requests.get(api_pokemon + pokemon['name'])
+        data_pokemon = response_pokemon.json()
+        MiPokemon = Pokemon(
+            data_pokemon["name"],
+            list(habilidad["ability"]["name"] for habilidad in data_pokemon["abilities"]),
+            data_pokemon["sprites"]['front_default']
+        )
+        MiPokemon.mostrar_datos()
+        print("-" * 50)
+
+
+def opcion2():
+    print('Has elegido la opción 2')
+
+
+def opcion3():
+    print('Has elegido la opción 3')
+
+def opcion4():
+    print('Has elegido la opción 4')
+
+def opcion5():
+    print('Has elegido la opción 5')
+
+def salir():
+    print('Saliendo')
+
+salir = False
+while not salir:
+    print("¡Hola amante de los pokemons!\n")
+    print('Menu de opciones:\n')
+    print("¿Qué deseas hacer hoy?\n")
+    print("Opción 1: Listar pokemons por generación.\n")
+    print("Opción 2: Listar pokemons por forma.\n")
+    print("Opción 3: Listar pokemons por habilidad\n")
+    print("Opción 4: Listar pokemons por habitat\n")
+    print("Opción 5: Listar pokemons por tipo\n")
+    print("Opción 6: Salir\n")
+
+    opciones = [1, 2, 3, 4, 5, 6]
+    while (a := int(input("Ingrese un número :")) ) not in opciones:
+          print("Selección incorrecta vuelve a intentarlo")
+    opcion = a
+    if opcion == 1:
+        print(opcion_1())
+        break
+    elif opcion == 2:
+        print('Opcion 2')
+        break
+    elif opcion == 3:
+        print("Opcion 3")
+        opcion_3()
+    elif opcion == 4:
+        print("Opcion 4")
+        opcion_4()
+        break
+    elif opcion == 5:
+        print("Opcion 5")
+        break
+    elif opcion == 6:
+        salir = True
+
