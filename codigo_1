@@ -1,39 +1,35 @@
-
 import pandas as pd
 import numpy as np
 
-def opciones(opcion):
-    if opcion == 1:
-        print('Has elegido la opción 1')
-        opcion_1()
-    elif opcion == 2:
-        opcion_2()
-    elif opcion == 3:
-        opcion_3()
-    elif opcion == 4:
-        opcion_4()
-    elif opcion == 5:
-        opcion_5()
-    elif opcion == 6:
-        opcion_6()
-    elif opcion == 7:
-        opcion_7()
-    elif opcion == 8:
-        opcion_8()
-    elif opcion == 9:
-        opcion_9()
-    elif opcion == 10:
-        opcion_10()
-    else:
-        opcion_11()
+def opcion_1():
+    df = pd.read_csv("Libros.csv")
+    return df
 
-def Verificar():
-    opciones = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
-    while (a := int(input("Ingrese un número :")) ) not in opciones:
-        print("Selección incorrecta vuelve a intentarlo")
-    return opciones(a)
+def opcion_2():
+    df = pd.read_csv("Libros_2.csv")
+    return df
 
-def menu():
+def opcion_3():
+    df = pd.read_csv("Libros.csv")
+    u_fila = df['ID'].iloc[-1]
+    print('Qué libro deseas agregar?\n')
+    titulo = input("Titulo:")
+    genero = input("Genero:")
+    ISBN = input("ISBN:")
+    editorial = input("Editorial:")
+    autor = input("Autor:")
+    ID = u_fila + 1
+    r_nuevo = [ID, titulo, genero, ISBN, editorial, autor]
+    df.loc[ID] = r_nuevo
+    df.to_csv('Libros_2.csv', index=False)
+def opcion_4():
+    df = pd.read_csv("Libros_2.csv")
+    a = int(input('Ingrese ID de libro a eliminar: '))
+    b = a - 1
+    df_eliminar = df.drop([b])
+    df_eliminar.to_csv('Libros_2.csv', index=False)
+salir = False
+while not salir:
     print("¡Hola amante de la lectura!\n")
     print('Menu de opciones:\n')
     print("¿Qué deseas hacer hoy?\n")
@@ -48,51 +44,23 @@ def menu():
     print("Opción 9: Modificar datos de un libro\n")
     print("Opción 10: Guardar libros\n")
     print("Opción 11: Salir\n")
-    Verificar()
 
-
-def opcion_1():
-    df = pd.read_csv("Libros.csv")
-    print(df)
-
-def opcion_2():
-    df = pd.read_csv("Libros_2.csv")
-    print('Has elegido la opción 2')
-    print(df)
-
-def opcion_3():
-    df = pd.read_csv("Libros.csv")
-    u_fila = df['ID'].iloc[-1]
-    print('Has elegido la opción 3\n')
-    titulo = input("Titulo:")
-    genero = input("Genero:")
-    ISBN = input("ISBN:")
-    editorial = input("Editorial:")
-    autor = input("Autor:")
-    ID = u_fila + 1
-    r_nuevo = [ID, titulo, genero, ISBN, editorial, autor]
-    df.loc[ID] = r_nuevo
-    df.to_csv('Libros_2.csv')
-
-def opcion_4():
-    print('Has elegido la opción 4')
-def opcion_5():
-    print('Has elegido la opción 5')
-def opcion_6():
-    print('Has elegido la opción 6')
-def opcion_7():
-    print('Has elegido la opción 7')
-def opcion_8():
-    print('Has elegido la opción 8')
-def opcion_9():
-    print('Has elegido la opción 9')
-def opcion_10():
-    print('Has elegido la opción 10')
-def opcion_11():
-    print('Has elegido la opción 11')
-
-
-menu()
-
+    opciones = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+    while (a := int(input("Ingrese un número :")) ) not in opciones:
+          print("Selección incorrecta vuelve a intentarlo")
+    opcion = a
+    if opcion == 1:
+        print('Has elegido la opción 1\n',opcion_1())
+        break
+    elif opcion == 2:
+        print('Has elegido la opción 2\n', opcion_2())
+        break
+    elif opcion == 3:
+        opcion_3()
+    elif opcion == 4:
+        opcion_4()
+        break
+    elif opcion == 11:
+        salir = True
 
 
