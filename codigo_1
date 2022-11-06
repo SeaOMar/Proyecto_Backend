@@ -1,0 +1,98 @@
+
+import pandas as pd
+import numpy as np
+
+def opciones(opcion):
+    if opcion == 1:
+        print('Has elegido la opción 1')
+        opcion_1()
+    elif opcion == 2:
+        opcion_2()
+    elif opcion == 3:
+        opcion_3()
+    elif opcion == 4:
+        opcion_4()
+    elif opcion == 5:
+        opcion_5()
+    elif opcion == 6:
+        opcion_6()
+    elif opcion == 7:
+        opcion_7()
+    elif opcion == 8:
+        opcion_8()
+    elif opcion == 9:
+        opcion_9()
+    elif opcion == 10:
+        opcion_10()
+    else:
+        opcion_11()
+
+def Verificar():
+    opciones = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+    while (a := int(input("Ingrese un número :")) ) not in opciones:
+        print("Selección incorrecta vuelve a intentarlo")
+    return opciones(a)
+
+def menu():
+    print("¡Hola amante de la lectura!\n")
+    print('Menu de opciones:\n')
+    print("¿Qué deseas hacer hoy?\n")
+    print("Opción 1: Leer libro\n")
+    print("Opción 2: Listar libros\n")
+    print("Opción 3: Agregar libro\n")
+    print("Opción 4: Eliminar libro\n")
+    print("Opción 5: Buscar libro por ISBN o título\n")
+    print("Opción 6: Ordenar libros por titulo\n")
+    print("Opción 7: Buscar libros por autor, editorial o género\n")
+    print("Opción 8: Buscar libros numero de autores\n")
+    print("Opción 9: Modificar datos de un libro\n")
+    print("Opción 10: Guardar libros\n")
+    print("Opción 11: Salir\n")
+    Verificar()
+
+
+def opcion_1():
+    df = pd.read_csv("Libros.csv")
+    print(df)
+
+def opcion_2():
+    df = pd.read_csv("Libros_2.csv")
+    print('Has elegido la opción 2')
+    print(df)
+
+def opcion_3():
+    df = pd.read_csv("Libros.csv")
+    u_fila = df['ID'].iloc[-1]
+    print('Has elegido la opción 3\n')
+    titulo = input("Titulo:")
+    genero = input("Genero:")
+    ISBN = input("ISBN:")
+    editorial = input("Editorial:")
+    autor = input("Autor:")
+    ID = u_fila + 1
+    r_nuevo = [ID, titulo, genero, ISBN, editorial, autor]
+    df.loc[ID] = r_nuevo
+    df.to_csv('Libros_2.csv')
+
+def opcion_4():
+    print('Has elegido la opción 4')
+def opcion_5():
+    print('Has elegido la opción 5')
+def opcion_6():
+    print('Has elegido la opción 6')
+def opcion_7():
+    print('Has elegido la opción 7')
+def opcion_8():
+    print('Has elegido la opción 8')
+def opcion_9():
+    print('Has elegido la opción 9')
+def opcion_10():
+    print('Has elegido la opción 10')
+def opcion_11():
+    print('Has elegido la opción 11')
+
+
+menu()
+
+
+
